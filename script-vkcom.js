@@ -710,17 +710,17 @@ function startGame(startInfo) {
 
         colorB(leftGameUser, topGameUser);
 
-        $("#GameBСontrol").css("display", "none");
-        $("#GameBСontrolM").css("display", "none");
+        // $("#GameBСontrol").css("display", "none");
+        // $("#GameBСontrolM").css("display", "none");
 
 
-        if (Number(mGet("GameLevel")) == 1) {
-            if (infoMobile == "") {
-                $("#GameBСontrol").css("display", "");
-            } else {
-                $("#GameBСontrolM").css("display", "");
-            }
-        }
+        // if (Number(mGet("GameLevel")) == 1) {
+        //     if (infoMobile == "") {
+        //         $("#GameBСontrol").css("display", "");
+        //     } else {
+        //         $("#GameBСontrolM").css("display", "");
+        //     }
+        // }
 
     }
 
@@ -809,10 +809,10 @@ function startGame(startInfo) {
             proverkaGameEndLVL();
         }
     }
-    // $("#levo").click(function() {
-    //                 playSoundFileWav('pressing');
-    //     levo();
-    // });
+    $("#levo").click(function() {
+                    playSoundFileWav('pressing');
+        levo();
+    });
     //verh
     function verh() {
         if (mGet("GameSid" + (leftGameUser) + "x" + (topGameUser - 1)) != 1) {
@@ -855,10 +855,10 @@ function startGame(startInfo) {
             proverkaGameEndLVL();
         }
     }
-    // $("#verh").click(function() {
-    //            playSoundFileWav('pressing');
-    //     verh();
-    // });
+    $("#verh").click(function() {
+               playSoundFileWav('pressing');
+        verh();
+    });
     //niz
     function niz() {
         if (mGet("GameSid" + (leftGameUser) + "x" + (topGameUser + 1)) != 1) {
@@ -901,10 +901,10 @@ function startGame(startInfo) {
             proverkaGameEndLVL();
         }
     }
-    // $("#niz").click(function() {
-    //            playSoundFileWav('pressing');
-    //     niz();
-    // });
+    $("#niz").click(function() {
+               playSoundFileWav('pressing');
+        niz();
+    });
 
     function pravo() {
         if (mGet("GameSid" + (leftGameUser + 1) + "x" + (topGameUser)) != 1) {
@@ -949,10 +949,10 @@ function startGame(startInfo) {
     }
 
     //pravo
-    // $("#pravo").click(function() {
-    //     playSoundFileWav('pressing');
-    //     pravo();
-    // });
+    $("#pravo").click(function() {
+        playSoundFileWav('pressing');
+        pravo();
+    });
 
     var currentDirectionInfo = -1;
     var stopswipe = 0;

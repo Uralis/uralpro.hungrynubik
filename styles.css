@@ -136,6 +136,38 @@ html, body {
 }
 
 
+
+
+.GameСontrolMe {
+    user-select: none;
+    position: fixed;
+    bottom: 2vh;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+
+
+.GameСontrolB {
+border-radius: 1.1vh;
+    background: #9a969675;
+    bottom: 12vh;
+    opacity: .9;
+    height: 10vh;
+    width: 10vh;
+    font-size: 8vh;
+    line-height: 10vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border: 0.1vh solid #5c5b5b;
+    cursor: pointer;
+    margin: 0.4vh;
+}
+
 .GameBalance {
     position: absolute;
     display: flex;
