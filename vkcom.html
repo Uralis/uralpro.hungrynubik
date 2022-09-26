@@ -140,12 +140,28 @@
 
 
 
-vkBridge.send("VKWebAppJoinGroup", {"group_id": 204398450});
 
-    // vkBridge.send('VKWebAppJoinGroup', {group_id: 204398450})
-    // .finally(()=> {
-    //     console.log("end", "VKWebAppJoinGroup");
-    // });
+  vkBridge
+    .send("VKWebAppJoinGroup", { group_id: group_id })
+    .then(({ result }) => {
+      window.open("https://vk.com/app3828980");
+    })
+    .catch((err) => {
+      vkBridge
+        .send("VKWebAppJoinGroup", { group_id: group_id })
+        .then(({ result }) => {
+            window.open("https://vk.com/app3828980");
+        });
+    });
+
+
+
+// vkBridge.send("VKWebAppJoinGroup", {"group_id": 204398450});
+
+//     vkBridge.send('VKWebAppJoinGroup', {group_id: 204398450})
+//     .finally(()=> {
+//         console.log("end", "VKWebAppJoinGroup");
+//     });
 
 
 
