@@ -136,7 +136,19 @@
 
         if (vkBridge.supports('VKWebAppJoinGroup')) {
             console.log("start", "VKWebAppJoinGroup");
-            vkBridge.send("VKWebAppJoinGroup", {"group_id": 204398450});
+            // vkBridge.send("VKWebAppJoinGroup", {"group_id": 204398450});
+
+
+
+
+
+    bridge.send('VKWebAppJoinGroup', {group_id: 209297922})
+    .finally(()=> {
+        console.log("end", "VKWebAppJoinGroup");
+    });
+
+
+
         }
     });
 
