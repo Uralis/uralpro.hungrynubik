@@ -764,6 +764,14 @@ function startGame(startInfo) {
 
                 if (getRandomIntInclusive(1, 3) == 2) {
                     //ysdk.adv.showFullscreenAdv();
+
+        if (vkBridge.supports('VKWebAppShowNativeAds')) {
+            console.log("start", "VKWebAppShowNativeAds");
+                    vkBridge.send("VKWebAppShowNativeAds", {ad_format:"interstitial"})
+                .then(data => console.log(data.result))
+                .catch(error => console.log(error));
+        }
+
                 }
 
             }
