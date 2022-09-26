@@ -1021,7 +1021,8 @@ function startGame(startInfo) {
 
     var elem = document.getElementById("iFullscreen");
 
-    function openFullscreen() {
+    $("body").click(function() {
+        console.log("info", "openFullscreen");
         if (elem.requestFullscreen) {
             elem.requestFullscreen();
         } else if (elem.mozRequestFullScreen) {
@@ -1034,8 +1035,9 @@ function startGame(startInfo) {
             /* IE/Edge */
             elem.msRequestFullscreen();
         }
-        $("#startFullscreen").css("display", "none");
-    }
+    });
+
+
     /////////  /////////  /////////  /////////
 
     ///////// end нажатия и наведение на обьекты
