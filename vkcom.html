@@ -143,9 +143,13 @@
 
     $("#vkIMGi2").click(function() {
         //https://vk.com/app3828980
-        if (vkBridge.supports('VKWebAppRecommend')) {
-            console.log("start", "VKWebAppRecommend");
-            vkBridge.send("VKWebAppRecommend");
+        if (vkBridge.supports('VKWebAppShowWallPostBox')) {
+            console.log("start", "VKWebAppShowWallPostBox");
+
+            vkBridge.send("VKWebAppShowWallPostBox", {
+  "message": "Hello!",
+  "attachments": "https://habr.com"
+});
         }
     });
         
