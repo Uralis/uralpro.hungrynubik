@@ -75,7 +75,7 @@ function returnTrue(text1, text2, returnOk, returnEr) {
 }
 
 ////////////////////////////
-var startProGame = 0;
+var startProGame = 1;
 var topGameUser = 0;
 var leftGameUser = 0;
 var ogr1 = 0;
@@ -925,27 +925,6 @@ function startGame(startInfo) {
     //     pravo();
     // });
 
-    document.addEventListener('keydown', function(event) {
-        if (startProGame == 1) {
-            if (event.code == 'ArrowRight' || event.code == 'KeyD') {
-                //playSoundFileWav('pressing');
-                pravo();
-            }
-            if (event.code == 'ArrowLeft' || event.code == 'KeyA') {
-                //playSoundFileWav('pressing');
-                levo();
-            }
-            if (event.code == 'ArrowUp' || event.code == 'KeyW') {
-                //playSoundFileWav('pressing');
-                verh();
-            }
-            if (event.code == 'ArrowDown' || event.code == 'KeyS') {
-                //playSoundFileWav('pressing');
-                niz();
-            }
-        }
-    });
-
     var currentDirectionInfo = -1;
     var stopswipe = 0;
     $(function() {
@@ -978,6 +957,33 @@ function startGame(startInfo) {
             maxTimeThreshold: 5000,
             fingers: 'all'
         });
+
+
+
+
+    document.addEventListener('keydown', function(event) {
+        if (startProGame == 1) {
+            if (event.code == 'ArrowRight' || event.code == 'KeyD') {
+                //playSoundFileWav('pressing');
+                pravo();
+            }
+            if (event.code == 'ArrowLeft' || event.code == 'KeyA') {
+                //playSoundFileWav('pressing');
+                levo();
+            }
+            if (event.code == 'ArrowUp' || event.code == 'KeyW') {
+                //playSoundFileWav('pressing');
+                verh();
+            }
+            if (event.code == 'ArrowDown' || event.code == 'KeyS') {
+                //playSoundFileWav('pressing');
+                niz();
+            }
+        }
+    });
+
+
+        
     });
 
     ///////// end нажатия и наведение на обьекты
