@@ -157,12 +157,13 @@
 
 
         $("#vkIMGi3").click(function() {
-            if (vkBridge.supports('VKWebAppGetFriends')) {
-                // vkBridge.send("VKWebAppShowWallPostBox", {
-                //     "message": "Отличная головоломка, чтобы скоротать время. Попробуй!!\nhttps://vk.com/app3828980"
-                // });
+            if (vkBridge.supports('VKWebAppShowInviteBox')) {
 
-                vkBridge.send("VKWebAppGetFriends", {});
+    vkBridge.send("VKWebAppShowInviteBox", {})
+             .then(data => console.log(data.success))  
+            .catch(error => console.log(error));
+
+
 
             }
         });
