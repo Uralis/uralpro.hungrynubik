@@ -66,6 +66,11 @@ body {
     background-color: #69b3d2 !important;
 }
 
+.active200:hover,
+.active200m:active {
+    background-color: #837171 !important;
+}
+
 .loadGif50 {
     display: block;
     height: 50%;
@@ -178,6 +183,44 @@ body {
     color: black;
     text-shadow: 0.1vh 0.1vh 0.2vh #000000;
 }
+
+
+
+.vkT {
+    user-select: none;
+    position: fixed;
+    top: 2vh;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+
+
+.vkTB {
+    border-radius: 1.1vh;
+    background: #b7a2a2;
+    bottom: 12vh;
+    opacity: .9;
+    height: 9vh;
+    width: 9vh;
+    font-size: 7vh;
+    line-height: 9vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border: 0.1vh solid #5c5b5b;
+    cursor: pointer;
+    margin: 0.4vh;
+    position: initial;
+    color: black;
+    text-shadow: 0.1vh 0.1vh 0.2vh #000000;
+}
+
+
+
 
 .GameBalance {
     position: absolute;

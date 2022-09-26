@@ -5,7 +5,7 @@
     <title>Loading</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-    <link href="styles.css?n2" rel="stylesheet" type="text/css">
+    <link href="styles.css?n3" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <link rel="prefetch prerender" href="img/audio0.png" />
@@ -18,6 +18,12 @@
     <link rel="prefetch prerender" href="img/game/stone_bricks.png" />
     <link rel="prefetch prerender" href="img/swipe.png" />
     <link rel="prefetch prerender" href="img/wasd.png" />
+
+    <link rel="prefetch prerender" href="img/vk/vklogo.png" />
+    <link rel="prefetch prerender" href="img/vk/share.png" />
+    <link rel="prefetch prerender" href="img/vk/personplus.png" />
+
+
 
     <link rel="prefetch prerender" href="sounds/applecr.wav" />
     <link rel="prefetch prerender" href="sounds/pressing.wav" />
@@ -89,14 +95,42 @@
     padding: 10px; display: inline-block; background: #44ac58; cursor: pointer; border-radius: 2vh; width: 37vh; color: black; height: 6vh; line-height: 6vh; border: 0.1vh solid #f0f0f0;"></div>
             </div>
         </div>
+
+
+        <div class="vkT">
+            <div class="vkTB" id="vkIMGi1c">
+                <img id="vkIMGi1" style="position: relative; width:100%;height: 100%;"></img>
+            </div>
+            <div class="vkTB" id="vkIMGi2c">
+                <img id="vkIMGi2" style="position: relative; width:100%;height: 100%;"></img>
+            </div>
+            <div class="vkTB" id="vkIMGi3c">
+                <img id="vkIMGi3" style="position: relative; width:100%;height: 100%;"></img>
+            </div>
+        </div>
+
+
     </div>
+
+
+
 
 
     <script src="jquery-3.6.0.min.js"></script>
     <script src="jquery.touchSwipe.min.js"></script>
-    <script src="different.js?n2"></script>
-    <script src="lvl.js?n2"></script>
-    <script src="script-vkcom.js?n2"></script>
+    <script src="different.js?n1"></script>
+    <script src="lvl.js?n1"></script>
+    <script src="script-vkcom.js?n1"></script>
+
+
+
+    <script type="text/javascript">
+        $('.vkTB').addClass('active200' + infoMobile);
+        $("#vkIMGi1").attr("src", "img/vk/vklogo.png");
+        $("#vkIMGi2").attr("src", "img/vk/share.png");
+        $("#vkIMGi3").attr("src", "img/vk/personplus.png");
+    </script>
+
 
 </body>
 
