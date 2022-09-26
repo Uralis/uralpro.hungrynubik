@@ -94,10 +94,13 @@ var iLVL = 0;
 
 let language = window.navigator.language;
 let languageFistTwo = language.substr(0, 2);
-var languageURL = ((new URL(document.location)).searchParams).get("lang");
-if (languageURL != null) {
-    languageFistTwo = languageURL;
-}
+// var languageURL = ((new URL(document.location)).searchParams).get("language");
+// if (languageURL != null) {
+//     var id = "null"
+//     if (id != "null") {
+//         languageFistTwo = languageURL;
+//     }
+// }
 
 function setTextLanguage(text) {
     var textNew = text;
@@ -1003,6 +1006,58 @@ function startGame(startInfo) {
 
     ///////////////////////////////////////////////////////////////
 
+    $('.vkTB').addClass('active200' + infoMobile);
+    $("#vkIMGi1").attr("src", "img/vk/vklogo.png");
+    $("#vkIMGi2").attr("src", "img/vk/share.png");
+    $("#vkIMGi3").attr("src", "img/vk/personplus.png");
+    $("#vkIMGi4").attr("src", "img/user.png");
+
+    $("#vkIMGi1").click(function() {
+        if (vkBridge.supports('VKWebAppJoinGroup')) {
+            vkBridge.send("VKWebAppJoinGroup", {
+                    group_id: 204398450
+                })
+                .then(({
+                    result
+                }) => {
+                    window.open("https://vk.com/public204398450");
+                })
+                .catch((err) => {});
+        }
+    });
+
+
+    $("#vkIMGi2").click(function() {
+        if (vkBridge.supports('VKWebAppShowWallPostBox')) {
+            vkBridge.send("VKWebAppShowWallPostBox", {
+                "message": "Отличная головоломка, чтобы скоротать время. Попробуй!!\nhttps://vk.com/app3828980"
+            });
+        }
+    });
+
+
+    $("#vkIMGi3").click(function() {
+        if (vkBridge.supports('VKWebAppShowInviteBox')) {
+            vkBridge.send("VKWebAppShowInviteBox", {})
+                .then(data => console.log(data.success))
+                .catch(error => console.log(error));
+        }
+    });
+
+
+    $("#vkIMGi4").click(function() {
+        if (vkBridge.supports('VKWebAppShowLeaderBoardBox')) {
+
+            vkBridge.send("VKWebAppShowLeaderBoardBox", {
+                    user_result: 100
+                })
+                .then(data => console.log(data.success))
+                .catch(error => console.log(error));
+        }
+    });
+
+    ///////////////////////////////////////////////////////////////
+
     $(function() {
         setTimeout(function() {
             //AndroidFunction.showToast('Загрузка прошла!');
@@ -1013,6 +1068,7 @@ function startGame(startInfo) {
             proverkaHover();
         }, 2000)
     });
+
     /////////end загрузка
 
     ///////////////////////////////////////////////////////////////
