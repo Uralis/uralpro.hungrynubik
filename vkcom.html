@@ -180,7 +180,7 @@
                 $("#vkIMGi4").click(function() {
             if (vkBridge.supports('VKWebAppShowLeaderBoardBox')) {
 
-bridge.send("VKWebAppShowLeaderBoardBox", {user_result:100})
+vkBridge.send("VKWebAppShowLeaderBoardBox", {user_result:100})
          .then(data => console.log(data.success))  
         .catch(error => console.log(error));
 
