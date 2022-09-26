@@ -58,6 +58,12 @@ html, body {
     color: red !important;
 }
 
+
+.active100:hover,
+.active100m:active {
+    background-color: #69b3d2 !important;
+}
+
 .loadGif50 {
     display: block;
     height: 50%;
@@ -152,13 +158,13 @@ html, body {
 
 .GameСontrolB {
 border-radius: 1.1vh;
-    background: #9a969675;
+    background: #00ff08d6;
     bottom: 12vh;
     opacity: .9;
-    height: 10vh;
-    width: 10vh;
-    font-size: 8vh;
-    line-height: 10vh;
+    height: 9vh;
+    width: 9vh;
+    font-size: 7vh;
+    line-height: 9vh;
     display: flex;
     align-items: center;
     align-content: center;
@@ -166,6 +172,9 @@ border-radius: 1.1vh;
     border: 0.1vh solid #5c5b5b;
     cursor: pointer;
     margin: 0.4vh;
+    position: initial;
+    color: black;
+    text-shadow: 0.1vh 0.1vh 0.2vh #000000;
 }
 
 .GameBalance {
