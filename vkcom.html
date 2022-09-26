@@ -98,13 +98,13 @@
 
 
         <div class="vkT">
-            <div class="vkTB" id="vkIMGi1c">
+            <div class="vkTB">
                 <img id="vkIMGi1" style="position: relative; width:100%;height: 100%;"></img>
             </div>
-            <div class="vkTB" id="vkIMGi2c">
+            <div class="vkTB">
                 <img id="vkIMGi2" style="position: relative; width:100%;height: 100%;"></img>
             </div>
-            <div class="vkTB" id="vkIMGi3c">
+            <div class="vkTB">
                 <img id="vkIMGi3" style="position: relative; width:100%;height: 100%;"></img>
             </div>
         </div>
@@ -129,6 +129,15 @@
         $("#vkIMGi1").attr("src", "img/vk/vklogo.png");
         $("#vkIMGi2").attr("src", "img/vk/share.png");
         $("#vkIMGi3").attr("src", "img/vk/personplus.png");
+
+
+    $("#vkIMGi1").click(function() {
+        if (vkBridge.supports('VKWebAppJoinGroup')) {
+            vkBridge.send("VKWebAppJoinGroup", {"group_id": 209297922});
+        }
+    });
+
+        
     </script>
 
 
