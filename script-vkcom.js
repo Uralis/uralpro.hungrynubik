@@ -1047,7 +1047,7 @@ function openFullscreen() {
 
 
     /////////  /////////  /////////  /////////
-    
+
         $('.vkTB').addClass('active200' + infoMobile);
         $("#vkIMGi1").attr("src", "img/vk/vklogo.png");
         $("#vkIMGi2").attr("src", "img/vk/share.png");
@@ -1061,9 +1061,10 @@ function openFullscreen() {
     });
 
 
-    $("#vkIMGi1").click(function() {
-        if (vkBridge.supports('VKWebAppJoinGroup')) {
-            vkBridge.send("VKWebAppJoinGroup", {"group_id": 204398450});
+    $("#vkIMGi2").click(function() {
+        //https://vk.com/app3828980
+        if (vkBridge.supports('VKWebAppRecommend')) {
+            vkBridge.send("VKWebAppRecommend");
         }
     });
 
