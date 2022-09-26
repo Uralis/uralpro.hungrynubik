@@ -992,7 +992,6 @@ function startGame(startInfo) {
 
 
 
-        $( document ).ready(function(){
       $( "body" ).keydown(function( event ){ 
             var key = (event.keyCode ? event.keyCode : event.which);
         if (startProGame == 1) {
@@ -1019,7 +1018,7 @@ function startGame(startInfo) {
     }
             console.log("info", key);
       });
-    });
+  
 
 
 
