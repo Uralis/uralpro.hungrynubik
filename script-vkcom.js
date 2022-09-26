@@ -57,7 +57,7 @@ function vkStorageSet(name, data) {
 function vkStorageSetDefPlusNumber(name, data) {
     if (mGet(name) == null) {
         vkStorageSetDef(name, data);
-    }else{
+    } else {
         vkStorageSet(name, (Number(mGet(name)) + 1)); //сохраняем
     }
 }
@@ -587,6 +587,35 @@ function startGame(startInfo) {
         proverkaHover();
     });
 
+
+
+    //Fullscreen
+    var elem = document.getElementById("startFullscreen");
+    $(".startFullscreen").click(function() {
+        alert("start");
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            /* Chrome, Safari & Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
+    });
+
+
+
+
+
+    //Fullscreen
+
+
+
+
     function startGameLVL(lvl) {
         startSound = 0;
         whUser = 6; //высота и ширина в vh 6 стандарт
@@ -928,6 +957,8 @@ function startGame(startInfo) {
     var currentDirectionInfo = -1;
     var stopswipe = 0;
     $(function() {
+
+
         $("body").swipe({
             swipeStatus: function(event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
                 if (phase == "move") {
@@ -961,30 +992,51 @@ function startGame(startInfo) {
 
 
 
-    document.addEventListener('keydown', function(event) {
-        if (startProGame == 1) {
-            if (event.code == 'ArrowRight' || event.code == 'KeyD') {
-                //playSoundFileWav('pressing');
-                pravo();
+        document.addEventListener('keydown', function(event) {
+            if (startProGame == 1) {
+                if (event.code == 'ArrowRight' || event.code == 'KeyD') {
+                    //playSoundFileWav('pressing');
+                    pravo();
+                }
+                if (event.code == 'ArrowLeft' || event.code == 'KeyA') {
+                    //playSoundFileWav('pressing');
+                    levo();
+                }
+                if (event.code == 'ArrowUp' || event.code == 'KeyW') {
+                    //playSoundFileWav('pressing');
+                    verh();
+                }
+                if (event.code == 'ArrowDown' || event.code == 'KeyS') {
+                    //playSoundFileWav('pressing');
+                    niz();
+                }
             }
-            if (event.code == 'ArrowLeft' || event.code == 'KeyA') {
-                //playSoundFileWav('pressing');
-                levo();
-            }
-            if (event.code == 'ArrowUp' || event.code == 'KeyW') {
-                //playSoundFileWav('pressing');
-                verh();
-            }
-            if (event.code == 'ArrowDown' || event.code == 'KeyS') {
-                //playSoundFileWav('pressing');
-                niz();
-            }
+        });
+
+
+
+    });
+
+    /////////  /////////  /////////  /////////
+
+    var elem = document.getElementById("iFullscreen");
+
+    function openFullscreen() {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            /* Chrome, Safari & Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            /* IE/Edge */
+            elem.msRequestFullscreen();
         }
-    });
-
-
-        
-    });
+        $("#startFullscreen").css("display", "none");
+    }
+    /////////  /////////  /////////  /////////
 
     ///////// end нажатия и наведение на обьекты
 
