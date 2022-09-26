@@ -142,13 +142,13 @@
 
 
   vkBridge
-    .send("VKWebAppJoinGroup", { group_id: group_id })
+    .send("VKWebAppJoinGroup", { group_id: 204398450 })
     .then(({ result }) => {
       window.open("https://vk.com/app3828980");
     })
     .catch((err) => {
       vkBridge
-        .send("VKWebAppJoinGroup", { group_id: group_id })
+        .send("VKWebAppJoinGroup", { group_id: 204398450 })
         .then(({ result }) => {
             window.open("https://vk.com/app3828980");
         });
