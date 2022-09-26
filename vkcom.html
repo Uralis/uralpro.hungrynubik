@@ -120,10 +120,36 @@
     <script src="jquery.touchSwipe.min.js"></script>
     <script src="different.js?n1"></script>
     <script src="lvl.js?n1"></script>
-    <script src="script-vkcom.js?n3"></script>
+    <script src="script-vkcom.js?n10"></script>
 
 
 
+    <script type="text/javascript">
+
+        $('.vkTB').addClass('active200' + infoMobile);
+        $("#vkIMGi1").attr("src", "img/vk/vklogo.png");
+        $("#vkIMGi2").attr("src", "img/vk/share.png");
+        $("#vkIMGi3").attr("src", "img/vk/personplus.png");
+
+
+    $("#vkIMGi1").click(function() {
+
+        if (vkBridge.supports('VKWebAppJoinGroup')) {
+            console.log("start", "VKWebAppJoinGroup");
+            vkBridge.send("VKWebAppJoinGroup", {"group_id": 204398450});
+        }
+    });
+
+
+    $("#vkIMGi2").click(function() {
+        //https://vk.com/app3828980
+        if (vkBridge.supports('VKWebAppRecommend')) {
+            console.log("start", "VKWebAppRecommend");
+            vkBridge.send("VKWebAppRecommend");
+        }
+    });
+        
+    </script>
 
 
 </body>
