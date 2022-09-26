@@ -75,7 +75,7 @@ function returnTrue(text1, text2, returnOk, returnEr) {
 }
 
 ////////////////////////////
-var startProGame = 1;
+var startProGame = 0;
 var topGameUser = 0;
 var leftGameUser = 0;
 var ogr1 = 0;
@@ -992,26 +992,59 @@ function startGame(startInfo) {
 
 
 
-        document.addEventListener('keydown', function(event) {
-            if (startProGame == 1) {
-                if (event.code == 'ArrowRight' || event.code == 'KeyD') {
-                    //playSoundFileWav('pressing');
-                    pravo();
-                }
-                if (event.code == 'ArrowLeft' || event.code == 'KeyA') {
-                    //playSoundFileWav('pressing');
-                    levo();
-                }
-                if (event.code == 'ArrowUp' || event.code == 'KeyW') {
+        $( document ).ready(function(){
+      $( "body" ).keydown(function( event ){ 
+            var key = (event.keyCode ? event.keyCode : event.which);
+        if (startProGame == 1) {
+            //up
+            if (key == 87 || key == 38) {
                     //playSoundFileWav('pressing');
                     verh();
-                }
-                if (event.code == 'ArrowDown' || event.code == 'KeyS') {
+            }
+            //left
+            if (key == 65 || key == 37) {
+                    //playSoundFileWav('pressing');
+                    levo();
+            }
+            //niz
+            if (key == 83 || key == 40) {
                     //playSoundFileWav('pressing');
                     niz();
-                }
             }
-        });
+            //pravo
+            if (key == 68 || key == 39) {
+                    //playSoundFileWav('pressing');
+                    pravo();
+            }
+    }
+            console.log("info", key);
+      });
+    });
+
+
+
+
+
+        // document.addEventListener('keydown', function(event) {
+        //     if (startProGame == 1) {
+        //         if (event.code == 'ArrowRight' || event.code == 'KeyD') {
+        //             //playSoundFileWav('pressing');
+        //             pravo();
+        //         }
+        //         if (event.code == 'ArrowLeft' || event.code == 'KeyA') {
+        //             //playSoundFileWav('pressing');
+        //             levo();
+        //         }
+        //         if (event.code == 'ArrowUp' || event.code == 'KeyW') {
+        //             //playSoundFileWav('pressing');
+        //             verh();
+        //         }
+        //         if (event.code == 'ArrowDown' || event.code == 'KeyS') {
+        //             //playSoundFileWav('pressing');
+        //             niz();
+        //         }
+        //     }
+        // });
 
 
 
