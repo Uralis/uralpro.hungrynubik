@@ -62,8 +62,6 @@ function vkStorageSetDefPlusNumber(name, data) {
     }
 }
 
-
-
 ////////////////////////////
 
 function returnTrue(text1, text2, returnOk, returnEr) {
@@ -476,22 +474,20 @@ function lvlB(lvlH, ogr1H, ogr2H, topGameUserH, leftGameUserH, whUserH) {
     }
     return false;
 }
-////////////////////////////
-function startGame(startInfo) {
-    ///////////////////////////////////////////////////////////////
-    //музыка (функция)
-    function playSoundFileWav(sound) {
-        if (mGet("GameSoundSettings") == "true") {
-            var audio = new Audio();
-            audio.src = 'sounds/' + sound + '.wav';
-            if (sound == "applecr") {
-                audio.volume = 0.1;
-            }
-            audio.autoplay = true;
+///////////////////////////////////////////////////////////////
+//музыка (функция)
+function playSoundFileWav(sound) {
+    if (mGet("GameSoundSettings") == "true") {
+        var audio = new Audio();
+        audio.src = 'sounds/' + sound + '.wav';
+        if (sound == "applecr") {
+            audio.volume = 0.1;
         }
+        audio.autoplay = true;
     }
-    ////////////////////////////////////////////////////////////////////////
-
+}
+///////////////////////////////////////////////////////////////
+function startGame(startInfo) {
     /////////AppStorage
     //уникальный ключ с датой первого запуска
     var newKey = "N " + dataAndTime().replace(/[.]/g, "-").replace(/[:]/g, "-") + " Y";
@@ -500,7 +496,6 @@ function startGame(startInfo) {
 
     //количество запусков
     vkStorageSetDefPlusNumber("iLaunches", 1);
-
 
     //lfSet("iLaunches", (Number(lfGet("iLaunches", 0)) + 1))
 
@@ -553,7 +548,6 @@ function startGame(startInfo) {
 
         $('.GameСontrolB').addClass('active100' + infoMobile);
 
-
         //Кнопка старт
         $('#startB').removeClass('startB' + infoMobile);
         $('#startB').addClass('startB' + infoMobile);
@@ -562,6 +556,7 @@ function startGame(startInfo) {
     ////////////////////////////////////////////////////////////////////////
     //запускаем уровень
     startGameLVL(Number(mGet("GameLevel")));
+
     ////////////////////////////////////////////////////////////////////////
     //старт игры (нажатие)
     $("#startB").click(function() {
@@ -571,7 +566,6 @@ function startGame(startInfo) {
         startProGame = 1;
         openFullscreen();
     });
-
 
     //кнопка отключения звука (нажатие)
     $("#GameSoundSettingsIMG").click(function() {
@@ -591,34 +585,6 @@ function startGame(startInfo) {
         playSoundFileWav('pressing');
         proverkaHover();
     });
-
-
-
-    //Fullscreen
-    var elem = document.getElementById("startFullscreen");
-    $(".startFullscreen").click(function() {
-        alert("start");
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-            /* Firefox */
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-            /* Chrome, Safari & Opera */
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            /* IE/Edge */
-            elem.msRequestFullscreen();
-        }
-    });
-
-
-
-
-
-    //Fullscreen
-
-
 
 
     function startGameLVL(lvl) {
@@ -694,9 +660,7 @@ function startGame(startInfo) {
         $("#user").css("left", ((100 / ogr1) * (leftGameUser - 1)) + "%");
         $("#user").css("top", ((100 / ogr2) * (topGameUser - 1)) + "%");
 
-
         $("#userIMGi").attr("src", "img/user.png");
-
 
         var htmltext = "";
         var htmltextP = "";
@@ -714,23 +678,9 @@ function startGame(startInfo) {
         $("#pole").html(htmltext);
 
         colorB(leftGameUser, topGameUser);
-
-        // $("#GameBСontrol").css("display", "none");
-        // $("#GameBСontrolM").css("display", "none");
-
-
-        // if (Number(mGet("GameLevel")) == 1) {
-        //     if (infoMobile == "") {
-        //         $("#GameBСontrol").css("display", "");
-        //     } else {
-        //         $("#GameBСontrolM").css("display", "");
-        //     }
-        // }
-
     }
 
     function colorB(leftGameUser, topGameUser) {
-        //$("#polegame" + (leftGameUser) + "x" + (topGameUser)).css("background", "#d7d7e2");
         $("#polegame" + (leftGameUser) + "x" + (topGameUser)).html("");
         if (mGet("GameSid" + leftGameUser + "x" + topGameUser) != 2 && startSound == 1) {
             playSoundFileWav('applecr');
@@ -750,8 +700,6 @@ function startGame(startInfo) {
             }
         }
 
-        //console.log(1, dwdwd);
-
         if (dwdwd <= 0) {
             if (ogr1 != 0 || ogr2 != 0) {
 
@@ -763,14 +711,15 @@ function startGame(startInfo) {
                 startGameLVL(Number(mGet("GameLevel")));
 
                 if (getRandomIntInclusive(1, 3) == 2) {
-                    //ysdk.adv.showFullscreenAdv();
 
-        if (vkBridge.supports('VKWebAppShowNativeAds')) {
-            console.log("start", "VKWebAppShowNativeAds");
-                    vkBridge.send("VKWebAppShowNativeAds", {ad_format:"interstitial"})
-                .then(data => console.log(data.result))
-                .catch(error => console.log(error));
-        }
+                    if (vkBridge.supports('VKWebAppShowNativeAds')) {
+                        console.log("start", "VKWebAppShowNativeAds");
+                        vkBridge.send("VKWebAppShowNativeAds", {
+                                ad_format: "interstitial"
+                            })
+                            .then(data => console.log(data.result))
+                            .catch(error => console.log(error));
+                    }
 
                 }
 
@@ -779,7 +728,7 @@ function startGame(startInfo) {
 
     }
 
-
+    ///////////////////////////////////////////////////////////////
     //levo
     function levo() {
         if (mGet("GameSid" + (leftGameUser - 1) + "x" + (topGameUser)) != 1) {
@@ -966,12 +915,10 @@ function startGame(startInfo) {
         playSoundFileWav('pressing');
         pravo();
     });
-
+    ///////////////////////////////////////////////////////////////
     var currentDirectionInfo = -1;
     var stopswipe = 0;
     $(function() {
-
-
         $("body").swipe({
             swipeStatus: function(event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
                 if (phase == "move") {
@@ -1004,9 +951,7 @@ function startGame(startInfo) {
 
     });
 
-    /////////  /////////  /////////  /////////
-
-
+    ///////////////////////////////////////////////////////////////
 
     $("body").click(function() {
         if (startProGame == 1) {
@@ -1015,22 +960,25 @@ function startGame(startInfo) {
     });
 
 
-function openFullscreen() {
-    var elem = document.getElementById("iFullscreen");
-        console.log("info", "openFullscreen");
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-            /* Firefox */
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-            /* Chrome, Safari & Opera */
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            /* IE/Edge */
-            elem.msRequestFullscreen();
-        }
-}
+    //Fullscreen
+    function openFullscreen() {
+        // var elem = document.getElementById("iFullscreen");
+        //     console.log("info", "openFullscreen");
+        //     if (elem.requestFullscreen) {
+        //         elem.requestFullscreen();
+        //     } else if (elem.mozRequestFullScreen) {
+        //         /* Firefox */
+        //         elem.mozRequestFullScreen();
+        //     } else if (elem.webkitRequestFullscreen) {
+        //         /* Chrome, Safari & Opera */
+        //         elem.webkitRequestFullscreen();
+        //     } else if (elem.msRequestFullscreen) {
+        //         /* IE/Edge */
+        //         elem.msRequestFullscreen();
+        //     }
+    }
+
+    ///////////////////////////////////////////////////////////////
 
     document.addEventListener('keydown', function(event) {
         if (startProGame == 1) {
@@ -1053,18 +1001,8 @@ function openFullscreen() {
         }
     });
 
+    ///////////////////////////////////////////////////////////////
 
-    /////////  /////////  /////////  /////////
-
-
-
-
-
-    /////////  /////////  /////////  /////////
-
-    ///////// end нажатия и наведение на обьекты
-
-    /////////загрузка рекламы при запуске 
     $(function() {
         setTimeout(function() {
             //AndroidFunction.showToast('Загрузка прошла!');
@@ -1073,7 +1011,6 @@ function openFullscreen() {
             $("#StartDiv").css("display", "");
             $("#UralPro").css("display", "flex");
             proverkaHover();
-            //$('#adWd').addClass('adP' + infoMobile);
         }, 2000)
     });
     /////////end загрузка
