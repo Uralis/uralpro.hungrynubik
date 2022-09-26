@@ -551,8 +551,8 @@ function startGame(startInfo) {
         $('#GameLevelReloadButtonIMG').addClass('active3a' + infoMobile);
 
 
-        $('#GameСontrolB').addClass('active100' + infoMobile);
-        
+        $('.GameСontrolB').addClass('active100' + infoMobile);
+
 
         //Кнопка старт
         $('#startB').removeClass('startB' + infoMobile);
