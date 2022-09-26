@@ -125,51 +125,34 @@
 
 
     <script type="text/javascript">
-
         $('.vkTB').addClass('active200' + infoMobile);
         $("#vkIMGi1").attr("src", "img/vk/vklogo.png");
         $("#vkIMGi2").attr("src", "img/vk/share.png");
         $("#vkIMGi3").attr("src", "img/vk/personplus.png");
 
 
-    $("#vkIMGi1").click(function() {
-
-        if (vkBridge.supports('VKWebAppJoinGroup')) {
-            console.log("start", "VKWebAppJoinGroup");
-            // vkBridge.send("VKWebAppJoinGroup", {"group_id": 204398450});
-
-
-
-
-  vkBridge
-    .send("VKWebAppJoinGroup", { group_id: 209297922 })
-    .then(({ result }) => {
-      window.open("https://vk.com/public204398450");
-    });
-
+        $("#vkIMGi1").click(function() {
+            if (vkBridge.supports('VKWebAppJoinGroup')) {
+                vkBridge.send("VKWebAppJoinGroup", {
+                        group_id: 204398450
+                    })
+                    .then(({
+                        result
+                    }) => {
+                        window.open("https://vk.com/public204398450");
+                    })
+                    .catch((err) => {});
+            }
+        });
 
 
-// vkBridge.send("VKWebAppJoinGroup", {"group_id": 204398450});
-
-//     vkBridge.send('VKWebAppJoinGroup', {group_id: 204398450})
-//     .finally(()=> {
-//         console.log("end", "VKWebAppJoinGroup");
-//     });
-
-
-
-        }
-    });
-
-
-    $("#vkIMGi2").click(function() {
-        //https://vk.com/app3828980
-        if (vkBridge.supports('VKWebAppShowWallPostBox')) {
-            console.log("start", "VKWebAppShowWallPostBox");
-            vkBridge.send("VKWebAppShowWallPostBox", {"message": "Отличная головоломка, чтобы скоротать время. Попробуй!!\nhttps://vk.com/app3828980"});
-        }
-    });
-        
+        $("#vkIMGi2").click(function() {
+            if (vkBridge.supports('VKWebAppShowWallPostBox')) {
+                vkBridge.send("VKWebAppShowWallPostBox", {
+                    "message": "Отличная головоломка, чтобы скоротать время. Попробуй!!\nhttps://vk.com/app3828980"
+                });
+            }
+        });
     </script>
 
 
