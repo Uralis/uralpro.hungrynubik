@@ -126,13 +126,25 @@
     <script src="script-vkcom.js?n17"></script>
 
     <script type="text/javascript">
-        
+      $(this).ready( function() {
+    $("body").keydown(function(e) {
+        console.log(e.keyCode);
+    });
+    
+})  
 
-$(document).keydown(function (e) {
+// $(document).keydown(function (e) {
 
-          console.log(e.keyCode);
+//           console.log(e.keyCode);
+
+
+
+
+
+
+
   
-});
+// });
 
     </script>
 
