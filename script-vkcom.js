@@ -484,6 +484,9 @@ function playSoundFileWav(sound) {
         var audio = new Audio();
         audio.src = 'sounds/' + sound + '.wav';
         if (sound == "applecr") {
+            audio.volume = 0.2;
+        }
+        if (sound == "pressing") {
             audio.volume = 0.1;
         }
         audio.autoplay = true;
@@ -1013,6 +1016,7 @@ function startGame(startInfo) {
     $("#vkIMGi4").attr("src", "img/user.png");
 
     $("#vkIMGi1").click(function() {
+        playSoundFileWav('pressing');
         if (vkBridge.supports('VKWebAppJoinGroup')) {
             vkBridge.send("VKWebAppJoinGroup", {
                     group_id: 204398450
@@ -1028,6 +1032,7 @@ function startGame(startInfo) {
 
 
     $("#vkIMGi2").click(function() {
+        playSoundFileWav('pressing');
         if (vkBridge.supports('VKWebAppShowWallPostBox')) {
             vkBridge.send("VKWebAppShowWallPostBox", {
                 "message": "Отличная головоломка, чтобы скоротать время. Попробуй!!\nhttps://vk.com/app3828980"
@@ -1037,6 +1042,7 @@ function startGame(startInfo) {
 
 
     $("#vkIMGi3").click(function() {
+        playSoundFileWav('pressing');
         if (vkBridge.supports('VKWebAppShowInviteBox')) {
             vkBridge.send("VKWebAppShowInviteBox", {})
                 .then(data => console.log(data.success))
@@ -1046,8 +1052,8 @@ function startGame(startInfo) {
 
 
     $("#vkIMGi4").click(function() {
+        playSoundFileWav('pressing');
         if (vkBridge.supports('VKWebAppShowLeaderBoardBox')) {
-
             vkBridge.send("VKWebAppShowLeaderBoardBox", {
                     user_result: 100
                 })
