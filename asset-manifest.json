@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/uralpro.hungrynubik/build/static/css/main.c94a5744.css",
+    "main.js": "/uralpro.hungrynubik/build/static/js/main.27bb0613.js",
+    "index.html": "/uralpro.hungrynubik/build/index.html",
+    "main.c94a5744.css.map": "/uralpro.hungrynubik/build/static/css/main.c94a5744.css.map",
+    "main.27bb0613.js.map": "/uralpro.hungrynubik/build/static/js/main.27bb0613.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c94a5744.css",
+    "static/js/main.27bb0613.js"
+  ]
+}
