@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/uralpro.hungrynubik/static/css/main.c94a5744.css",
-    "main.js": "/uralpro.hungrynubik/static/js/main.230d5f2c.js",
+    "main.js": "/uralpro.hungrynubik/static/js/main.9ffacd77.js",
     "index.html": "/uralpro.hungrynubik/index.html",
     "main.c94a5744.css.map": "/uralpro.hungrynubik/static/css/main.c94a5744.css.map",
-    "main.230d5f2c.js.map": "/uralpro.hungrynubik/static/js/main.230d5f2c.js.map"
+    "main.9ffacd77.js.map": "/uralpro.hungrynubik/static/js/main.9ffacd77.js.map"
   },
   "entrypoints": [
     "static/css/main.c94a5744.css",
-    "static/js/main.230d5f2c.js"
+    "static/js/main.9ffacd77.js"
   ]
 }
