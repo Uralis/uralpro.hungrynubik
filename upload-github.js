@@ -4,25 +4,26 @@
  * Скрипт для автоматической «заливки» всего локального проекта
  * в удалённый репозиторий GitHub (ветка main).
  *
- * Как работает:
- * 1. Проверяет, инициализирован ли уже Git в корне проекта. Если нет — делает `git init`.
- * 2. Проверяет наличие remote “origin”. Если его нет или он отличается — привязывает указанный URL.
- * 3. Ставит все файлы (кроме тех, что в .gitignore) в индекс и создаёт коммит “Initial commit” (или обновлённый).
- * 4. Пушит локальную ветку (по умолчанию main) в origin.
+ * Обновлённая логика:
+ * 1. Проверяет, инициализирован ли Git. Если нет — делает `git init`.
+ * 2. Проверяет/настраивает remote “origin”.
+ * 3. Переименовывает или создаёт ветку `main`.
+ * 4. Добавляет все файлы в индекс и коммитит, если есть изменения.
+ * 5. Делает `git pull --rebase` из origin/main, чтобы подтянуть удалённые изменения.
+ * 6. Пушит локальную ветку main в origin.
  */
 
 const { execSync } = require('child_process');
 const fs = require('fs');
-const path = require('path');
 
 // ─── НАСТРОЙКИ ───────────────────────────────────────────────────────────
 // Укажите сюда URL своего репозитория (HTTPS или SSH) на GitHub:
 const config = {
   repository: 'https://github.com/YourNovelsWorld/Frontend.git',
-  branch: 'main',       // ветка, в которую будем пушить (обычно main или master)
+  branch: 'main', // ветка, в которую будем пушить
 };
 
-// Полезная обёртка для выполнения команд в консоли:
+// Утилита для выполнения команд в консоли (stdout/stderr в консоль):
 function run(cmd) {
   console.log(`> ${cmd}`);
   execSync(cmd, { stdio: 'inherit' });
@@ -33,12 +34,12 @@ function isGitInitialized() {
   try {
     execSync('git rev-parse --is-inside-work-tree', { stdio: 'ignore' });
     return true;
-  } catch (err) {
+  } catch {
     return false;
   }
 }
 
-// Получить текущий URL для remote “origin”, если он задан:
+// Получить URL для remote “origin” (если настроен):
 function getCurrentRemoteUrl() {
   try {
     const url = execSync('git config --get remote.origin.url', { encoding: 'utf-8' }).trim();
@@ -48,9 +49,9 @@ function getCurrentRemoteUrl() {
   }
 }
 
-// Основная функция:
+// Основная функция
 function uploadProjectToGithub() {
-  // 1) Инициализируем репозиторий Git, если ещё не было
+  // 1) Инициализируем Git, если ещё не было
   if (!isGitInitialized()) {
     console.log('Git не инициализирован. Выполняем git init…');
     run('git init');
@@ -74,37 +75,32 @@ function uploadProjectToGithub() {
     console.log(`Remote "origin" уже указывает на ${existingRemote}`);
   }
 
-  // 3) Гарантируем, что текущая ветка называется так, как в config.branch
+  // 3) Переключаемся на ветку config.branch (main)
   const branchName = config.branch;
   try {
     const currentBranch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf-8' }).trim();
     if (currentBranch !== branchName) {
-      // Переименуем (или создадим) ветку:
       console.log(`Сейчас ветка "${currentBranch}", переименовываем/переключаем на "${branchName}"…`);
       run(`git branch -M ${branchName}`);
     } else {
       console.log(`Текущая ветка уже "${branchName}".`);
     }
-  } catch (err) {
-    // Если нет ни одной ветки (пустой репозиторий), создаём ветку:
+  } catch {
+    // Если нет ни одного коммита, создаём ветку:
     console.log(`Не удалось определить текущую ветку: создаём ветку "${branchName}"…`);
     run(`git checkout -b ${branchName}`);
   }
 
-  // 4) Добавим все файлы (кроме тех, что в .gitignore) в индекс
+  // 4) Добавляем все файлы в индекс
   console.log('Добавляем все файлы в git индекс:');
   run('git add .');
 
-  // 5) Создаём коммит
-  // Попытаемся получить сообщение последнего коммита, чтобы понять, нужен ли новый коммит
+  // 5) Проверяем, есть ли изменения для коммита
   let needCommit = true;
   try {
-    // Если изменений нет, то git diff-index вернёт код 0, а вывод будет пуст.
-    execSync('git diff-index --quiet HEAD --');
-    // Код возврата 0 означает: нет изменений → не нужен новый коммит
+    execSync('git diff-index --quiet HEAD --'); // если нет изменений, вернёт 0
     needCommit = false;
   } catch {
-    // Код возврата 1 означает: есть изменения → нужно делать коммит
     needCommit = true;
   }
 
@@ -115,11 +111,29 @@ function uploadProjectToGithub() {
     console.log('Изменений нет, новый коммит не нужен.');
   }
 
-  // 6) Пушим в origin
-  console.log(`Пушим ветку "${branchName}" в origin…`);
-  run(`git push -u origin ${branchName}`);
+  // 6) Подтягиваем (pull) из origin/main с --rebase
+  // Если ветка ещё не существует на удалённом, pull вернёт ошибку — игнорируем её.
+  console.log(`Подтягиваем удалённые изменения: git pull --rebase origin ${branchName}`);
+  try {
+    run(`git pull --rebase origin ${branchName}`);
+  } catch (err) {
+    console.log(
+      ` > Не удалось подтянуть из origin/${branchName} (возможно, ветка не существует). Продолжаем.`
+    );
+  }
 
-  console.log('\n✅ Проект успешно загружен в репозиторий GitHub!');
+  // 7) Пушим в origin/main
+  console.log(`Пушим ветку "${branchName}" в origin…`);
+  try {
+    run(`git push -u origin ${branchName}`);
+    console.log('\n✅ Проект успешно загружен в репозиторий GitHub!');
+  } catch (err) {
+    console.error(
+      `Ошибка при пуше в origin/${branchName}. Возможно, потребуется ручная команда:\n` +
+        `  git push --force origin ${branchName}`
+    );
+    process.exit(1);
+  }
 }
 
 // Запускаем скрипт
