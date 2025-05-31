@@ -4,7 +4,7 @@ const { execSync } = require('child_process');
 
 const config = {
   repository: 'https://github.com/Uralis/uralpro.hungrynubik.git', // ← твой репозиторий
-  branch: 'main',
+  branch: 'react',
 };
 
 function run(cmd) {
