@@ -3,8 +3,8 @@
 const { execSync } = require('child_process');
 
 const config = {
-  repository: 'https://github.com/YourGitHubUsername/Frontend.git', // ← замени на свой
-  branch: 'react',
+  repository: 'https://github.com/YourNovelsWorld/Frontend.git', // ← замени на свой
+  branch: 'main',
 };
 
 function run(cmd) {
