@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "upload-project": "node upload-github.js",
+    "upload-github": "node upload-github.js",
     "deploy": "npm run build && npm run ftp-upload-site"
   },
   "eslintConfig": {
