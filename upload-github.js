@@ -3,7 +3,7 @@
 const { execSync } = require('child_process');
 
 const config = {
-  repository: 'https://github.com/YourNovelsWorld/Frontend.git', // ← замени на свой
+  repository: 'https://github.com/Uralis/uralpro.hungrynubik.git', // ← замени на свой
   branch: 'main',
 };
 
