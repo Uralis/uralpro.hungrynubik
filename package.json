@@ -15,11 +15,12 @@
   "scripts": {
     "ftp-upload-site": "node deploy.js",
     "github-upload-site": "node deploy-github.js",
+    "upload-upload-site": "node upload-github.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && npm run ftp-upload-site && npm run github-upload-site"
+    "deploy": "npm run build && npm run ftp-upload-site"
   },
   "eslintConfig": {
     "extends": [
