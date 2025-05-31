@@ -19,7 +19,7 @@ const fs = require('fs');
 // ─── НАСТРОЙКИ ───────────────────────────────────────────────────────────
 // Укажите сюда URL своего репозитория (HTTPS или SSH) на GitHub:
 const config = {
-  repository: 'https://github.com/YourNovelsWorld/Frontend.git',
+  repository: 'https://github.com/YourNovelsWorld/Frontend',
   branch: 'main', // ветка, в которую будем пушить
 };
 
