@@ -1,9 +1,9 @@
-// upload-github.js — упрощённая версия: просто выгрузка проекта
+// upload-github.js — выгрузка проекта с очисткой origin
 
 const { execSync } = require('child_process');
 
 const config = {
-  repository: 'https://github.com/Uralis/uralpro.hungrynubik.git', // ← замени на свой
+  repository: 'https://github.com/Uralis/uralpro.hungrynubik.git', // ← твой репозиторий
   branch: 'main',
 };
 
@@ -44,7 +44,12 @@ function upload() {
   }
 
   const remote = getRemoteOrigin();
-  if (!remote) {
+  if (remote && remote !== config.repository) {
+    console.log(`Удаляем старый origin → ${remote}`);
+    run('git remote remove origin');
+  }
+
+  if (!remote || remote !== config.repository) {
     console.log(`Настраиваем origin → ${config.repository}`);
     run(`git remote add origin ${config.repository}`);
   } else {
@@ -54,7 +59,6 @@ function upload() {
   console.log('Добавляем все файлы…');
   run('git add .');
 
-  // Проверка на изменения (чтобы не коммитить пустоту)
   let hasChanges = false;
   try {
     execSync('git diff-index --quiet HEAD --');
